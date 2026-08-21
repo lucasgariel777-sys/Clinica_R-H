@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R&H Clínica Dentária</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --azul: #1f6feb;
+  --azul-escuro: #0d2b4e;
+  --claro: #f4f8fc;
+  --texto: #1a1a1a;
+  --cinza: #667085;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ===== TOPO / MENU ===== */
+.topo {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  z-index: 100;
+}
+
+.topo-conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--azul-escuro);
+}
+
+.logo span {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--cinza);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+nav a {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--texto);
+}
+
+.btn-marcar {
+  background: var(--azul);
+  color: #fff !important;
+  padding: 10px 20px;
+  border-radius: 30px;
+}
+
+.hamburguer {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  color: #fff;
+  padding: 130px 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-fundo {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(13,43,78,0.92), rgba(31,111,235,0.85)),
+    url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1400&h=800&fit=crop&auto=format') center/cover;
+  z-index: 0;
+}
+
+.hero-conteudo { position: relative; z-index: 1; }
+
+.etiqueta-hero {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 44px;
+  max-width: 700px;
+  margin: 0 auto 18px;
+}
+
+.hero p {
+  font-size: 18px;
+  opacity: 0.92;
+  max-width: 550px;
+  margin: 0 auto 32px;
+}
+
+/* ===== FAIXA DE SORRISOS ===== */
+.faixa-sorrisos {
+  padding: 40px 0;
+  background: var(--claro);
+}
+
+.grade-sorrisos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.foto-sorriso {
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(13,43,78,0.12);
+  transition: transform 0.25s ease;
+}
+
+.foto-sorriso:hover { transform: translateY(-6px) scale(1.02); }
+
+.foto-sorriso img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn-primario {
+  display: inline-block;
+  background: #fff;
+  color: var(--azul-escuro);
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* ===== SECOES ===== */
+.secao {
+  padding: 90px 0;
+}
+
+.secao-clara { background: var(--claro); }
+
+.secao-escura {
+  background: var(--azul-escuro);
+  color: #fff;
+}
+
+.titulo-secao {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 50px;
+  color: var(--azul-escuro);
+}
+
+.titulo-claro { color: #fff; }
+
+.alinhar-esquerda {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+/* ===== SERVICOS ===== */
+.grade-servicos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.card-servico {
+  background: #fff;
+  border: 1px solid #e6ebf1;
+  border-radius: 14px;
+  padding: 30px 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-servico:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+.icone-servico { font-size: 34px; margin-bottom: 14px; }
+
+.card-servico h3 { font-size: 18px; margin-bottom: 8px; color: var(--azul-escuro); }
+.card-servico p { color: var(--cinza); font-size: 14px; }
+
+/* ===== SOBRE ===== */
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.sobre-texto p { color: var(--cinza); margin-bottom: 16px; }
+
+.numeros {
+  display: flex;
+  gap: 30px;
+  margin-top: 24px;
+}
+
+.numeros strong {
+  display: block;
+  font-size: 26px;
+  color: var(--azul);
+}
+
+.numeros span { font-size: 13px; color: var(--cinza); }
+
+.sobre-imagem img {
+  width: 100%;
+  border-radius: 16px;
+}
+
+/* ===== EQUIPA ===== */
+.grade-equipa {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  text-align: center;
+}
+
+.card-membro img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 14px;
+}
+
+.card-membro h3 { font-size: 17px; color: var(--azul-escuro); }
+.card-membro p { color: var(--cinza); font-size: 14px; }
+
+/* ===== DEPOIMENTOS ===== */
+.grade-depoimentos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.card-depoimento {
+  background: rgba(255,255,255,0.07);
+  padding: 30px 26px;
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.card-depoimento:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.12);
+}
+
+.foto-depoimento {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 16px;
+  border: 2px solid rgba(255,255,255,0.35);
+}
+
+.card-depoimento p { margin-bottom: 14px; font-style: italic; }
+.card-depoimento span { font-size: 13px; opacity: 0.75; }
+
+/* ===== CONTACTO ===== */
+.contacto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+.contacto-info p { color: var(--cinza); margin-bottom: 20px; }
+
+.lista-contacto { list-style: none; }
+.lista-contacto li { margin-bottom: 12px; color: var(--texto); font-size: 15px; }
+
+.formulario-contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.formulario-contacto input,
+.formulario-contacto textarea {
+  padding: 14px;
+  border: 1px solid #dbe2ea;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.formulario-contacto button { align-self: flex-start; background: var(--azul); color: #fff; }
+
+/* ===== RODAPE ===== */
+.rodape {
+  background: var(--azul-escuro);
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  padding: 24px 0;
+  font-size: 13px;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 800px) {
+  nav { display: none; }
+  .hamburguer { display: block; }
+  nav.aberto {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 20px 24px;
+    gap: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+  .sobre-grid, .contacto-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 30px; }
+  .grade-sorrisos { grid-template-columns: repeat(2, 1fr); }
+}
+
+</style>
+</head>
+<body>
+
+  <!-- ===== MENU ===== -->
+  <header class="topo" id="topo">
+    <div class="container topo-conteudo">
+      <div class="logo">R&amp;H <span>Clínica Dentária</span></div>
+      <nav id="menu">
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#contacto" class="btn-marcar">Marcar Consulta</a>
+      </nav>
+      <button class="hamburguer" id="hamburguer">&#9776;</button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-fundo"></div>
+    <div class="container hero-conteudo">
+      <span class="etiqueta-hero">&#10024; Cuidamos do teu sorriso</span>
+      <h1>O teu sorriso, a nossa prioridade</h1>
+      <p>Cuidados dentários modernos, com conforto e confiança, para toda a família.</p>
+      <a href="#contacto" class="btn-primario">Marcar Consulta</a>
+    </div>
+  </section>
+
+  <!-- ===== FAIXA DE SORRISOS ===== -->
+  <section class="faixa-sorrisos">
+    <div class="container">
+      <div class="grade-sorrisos">
+        <div class="foto-sorriso"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&auto=format" alt="Sorriso saudável"></div>
+        <div class="foto-sorriso"><img src="https://images.unsplash.com/photo-1554727242-741c14fa561c?w=400&h=400&fit=crop&auto=format" alt="Sorriso saudável"></div>
+        <div class="foto-sorriso"><img src="https://images.unsplash.com/photo-1592621385612-4d7129426394?w=400&h=400&fit=crop&auto=format" alt="Sorriso saudável"></div>
+        <div class="foto-sorriso"><img src="https://images.unsplash.com/photo-1535295972055-1c762f4483e5?w=400&h=400&fit=crop&auto=format" alt="Sorriso saudável"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICOS ===== -->
+  <section id="servicos" class="secao">
+    <div class="container">
+      <h2 class="titulo-secao">Os nossos serviços</h2>
+      <div class="grade-servicos">
+        <div class="card-servico">
+          <div class="icone-servico">&#128522;</div>
+          <h3>Limpeza &amp; Prevenção</h3>
+          <p>Consultas de rotina para manter a tua saúde oral em dia.</p>
+        </div>
+        <div class="card-servico">
+          <div class="icone-servico">&#10024;</div>
+          <h3>Estética Dentária</h3>
+          <p>Branqueamento e facetas para um sorriso mais bonito.</p>
+        </div>
+        <div class="card-servico">
+          <div class="icone-servico">&#129504;</div>
+          <h3>Ortodontia</h3>
+          <p>Aparelhos tradicionais e alinhadores invisíveis.</p>
+        </div>
+        <div class="card-servico">
+          <div class="icone-servico">&#128007;</div>
+          <h3>Implantes</h3>
+          <p>Soluções duradouras para dentes em falta.</p>
+        </div>
+        <div class="card-servico">
+          <div class="icone-servico">&#128680;</div>
+          <h3>Urgências</h3>
+          <p>Atendimento rápido para dores e emergências dentárias.</p>
+        </div>
+        <div class="card-servico">
+          <div class="icone-servico">&#128118;</div>
+          <h3>Odontopediatria</h3>
+          <p>Cuidado especial e paciente para os mais pequenos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOBRE ===== -->
+  <section id="sobre" class="secao secao-clara">
+    <div class="container sobre-grid">
+      <div class="sobre-texto">
+        <h2 class="titulo-secao alinhar-esquerda">Sobre a R&amp;H</h2>
+        <p>Na R&amp;H Clínica Dentária, acreditamos que um sorriso saudável começa com confiança. A nossa equipa combina tecnologia moderna com um atendimento próximo e humano, garantindo que cada consulta seja tranquila e sem stress.</p>
+        <p>Trabalhamos com cada paciente de forma individual, criando planos de tratamento pensados para as tuas necessidades e o teu orçamento.</p>
+        <div class="numeros">
+          <div><strong>10+</strong><span>Anos de experiência</span></div>
+          <div><strong>3.000+</strong><span>Pacientes atendidos</span></div>
+          <div><strong>98%</strong><span>Satisfação</span></div>
+        </div>
+      </div>
+      <div class="sobre-imagem">
+        <img src="https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?w=600&h=600&fit=crop&auto=format" alt="Sorriso saudável">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DEPOIMENTOS ===== -->
+  <section id="depoimentos" class="secao secao-escura">
+    <div class="container">
+      <h2 class="titulo-secao titulo-claro">O que dizem os nossos pacientes</h2>
+      <div class="grade-depoimentos">
+        <div class="card-depoimento">
+          <img class="foto-depoimento" src="https://images.unsplash.com/photo-1598625873873-52f9aefd7d9d?w=150&h=150&fit=crop&auto=format" alt="Carla M.">
+          <p>"Excelente atendimento, equipa muito atenciosa e profissional. Recomendo!"</p>
+          <span>— Carla M.</span>
+        </div>
+        <div class="card-depoimento">
+          <img class="foto-depoimento" src="https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?w=150&h=150&fit=crop&auto=format" alt="João P.">
+          <p>"Finalmente uma clínica onde não tenho medo de ir ao dentista."</p>
+          <span>— João P.</span>
+        </div>
+        <div class="card-depoimento">
+          <img class="foto-depoimento" src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=150&h=150&fit=crop&auto=format" alt="Marta S.">
+          <p>"Resultado do branqueamento superou as minhas expectativas."</p>
+          <span>— Marta S.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACTO ===== -->
+  <section id="contacto" class="secao">
+    <div class="container contacto-grid">
+      <div class="contacto-info">
+        <h2 class="titulo-secao alinhar-esquerda">Marca a tua consulta</h2>
+        <p>Preenche o formulário e entraremos em contacto o mais rápido possível.</p>
+        <ul class="lista-contacto">
+          <li>&#128222; 868 101 222</li>
+          <li>&#9993; R&amp;H-Clinica@gmail.com</li>
+          <li>&#128205; Av. Principal, 123 — Maputo</li>
+          <li>&#128337; Seg-Sex: 08h-18h | Sáb: 08h-13h</li>
+        </ul>
+      </div>
+      <form class="formulario-contacto" id="form-contacto">
+        <input type="text" placeholder="O teu nome" required>
+        <input type="tel" placeholder="O teu número" required>
+        <input type="email" placeholder="O teu email">
+        <textarea placeholder="Escreve a tua mensagem..." rows="4"></textarea>
+        <button type="submit" class="btn-primario">Enviar Pedido</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== RODAPE ===== -->
+  <footer class="rodape">
+    <div class="container">
+      <p>&copy; 2026 R&amp;H Clínica Dentária. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+// Abrir/fechar o menu no telemóvel
+const hamburguer = document.getElementById("hamburguer");
+const menu = document.getElementById("menu");
+
+hamburguer.addEventListener("click", () => {
+  menu.classList.toggle("aberto");
+});
+
+// Fechar o menu ao clicar num link (no telemóvel)
+menu.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    menu.classList.remove("aberto");
+  });
+});
+
+// Simular envio do formulário de contacto (site de portfólio, sem backend real)
+const form = document.getElementById("form-contacto");
+form.addEventListener("submit", (evento) => {
+  evento.preventDefault();
+  alert("Obrigado! A tua mensagem foi enviada (simulação — este é um site de portfólio).");
+  form.reset();
+});
+
+</script>
+</body>
+</html>
